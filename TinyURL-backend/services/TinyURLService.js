@@ -54,7 +54,7 @@ export const createTinyURL = async (newTinyURL) =>{
     });
 
     //cache posts
-    cache.addToCache('origLink', JSON.stringify(validTinyUrl.origLink), validTinyUrl);
+    cache.addToCache('origLink', JSON.stringify(urlData.origLink), urlData);
 
     console.log(urlData);
     return urlData;
