@@ -47,7 +47,7 @@ export const addNewURL = async (req, res) => {
     let validTinyUrl;
 
     //validate shortLink newTinyURL
-    if(!validURL.isUri(newTinyURL.shortLink)){
+    if(validURL.shortLink && !validURL.isUri(newTinyURL.shortLink)){
         return res.status(404).json('Invalid shortLink URL format');
     }
 
@@ -79,7 +79,7 @@ export const getAllURLs = async (req, res) => {
 
 export const getURLById = async (req, res) => {
 
-    await tinyURL.findById(req.params.id, (err, tinyURL) => {
+    await tinyURL.findOne({id: req.params.id}, (err, tinyURL) => {
         if(err){
             res.send(err);
         }
@@ -89,7 +89,7 @@ export const getURLById = async (req, res) => {
 
 export const updateURL = async (req, res) => {
 
-    await tinyURL.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, useFindAndModify: false}, (err, tinyURL) => {
+    await tinyURL.findOneAndUpdate({id: req.params.id}, req.body, {new: true, useFindAndModify: false}, (err, tinyURL) => {
         if(err){
             res.send(err);
         }
@@ -99,7 +99,7 @@ export const updateURL = async (req, res) => {
 
 export const deleteURL = async (req, res) => {
 
-    await tinyURL.deleteOne({_id: req.params.id}, (err, tinyURL) => {
+    await tinyURL.deleteOne({id: req.params.id}, (err, tinyURL) => {
         if(err){
             res.send(err);
         }

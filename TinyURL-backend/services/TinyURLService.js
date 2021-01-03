@@ -36,18 +36,18 @@ export const createTinyURL = async (newTinyURL) =>{
     console.log(urlData);
     
     //if user didn't opt to create unique short link, create one for them
+    let shortL = `http://localhost:4000/tiny/`;
     let genId = shortid.generate();
-    let shortL;
 
-    if(newTinyURL.shortLink != 'undefined'){
-        shortL = newTinyURL.shortLink + "/" + genId;
+    if(newTinyURL.shortLink){
+        shortL += newTinyURL.shortLink;
     }
     else{
-        shortL = newTinyURL.shortLink + `http://tiny/${genId}`;
+        shortL += genId;
     }
 
     urlData = new tinyURL({
-        id: genId,
+        id: newTinyURL.shortLink ? newTinyURL.shortLink : genId,
         shortLink: shortL,
         origLink: newTinyURL.origLink,
         name: newTinyURL.name
