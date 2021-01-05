@@ -20,8 +20,8 @@ export const TinyUrl = (props) => {
 
         console.log(tinyURL);
     
-        axios.post("http://localhost:4000/api/newURL/", tinyURL).then(result => {
-            history.push(`/details/${result.data.id}`);
+        axios.post("http://localhost:4000/api/newURL", tinyURL).then(result => {
+            history.push(`/tiny-url/details/${result.data.id}`);
         }).catch(err => console.log(err));
     }
     

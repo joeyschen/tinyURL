@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import routes from './routes/tinyURLRoutes';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 const PORT = 4000;
@@ -19,11 +20,16 @@ mongoose.connect('mongodb://localhost/urlDB', {
 // bodyparser setup
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
+app.use(express.static(path.join(__dirname, "/build")));
 
 //CORS setup
 app.use(cors());
 
 routes(app);
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+})
 
 app.listen(PORT, () => 
     console.log(`Your server is running on ${PORT}`)

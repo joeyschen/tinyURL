@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 
-export const Details = (props) => {
+export const Details = ({match}) => {
     const [tinyURL, setTinyURL] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:4000/api/newURL/${props.param.id}`).then(result => {
+
+        // const {match: {params}} = this.props;
+        
+        axios.get(`http://localhost:4000/api/newURL/${match.params.id}`).then(result => {
           const response = result.data;
           console.log(response);
           setTinyURL(response);
