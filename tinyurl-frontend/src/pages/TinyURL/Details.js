@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {Container} from 'react-bootstrap';
 
 export const Details = ({match}) => {
     const [tinyURL, setTinyURL] = useState([]);
@@ -24,12 +25,15 @@ export const Details = ({match}) => {
     }, []);
 
     return (
-        loading ? <div>Loading...</div> : error ? <div>Error occured.</div> : 
-
-        <div>
-            <p>Name: {tinyURL.name} </p>
-            <p>Short Link: {tinyURL.shortLink}</p>
-            <p>Original Link: {tinyURL.origLink}</p>
-        </div>
+        loading ? <div>Loading...</div> : error ? <div>Error occured.</div> :
+        <>
+        <Container className="p-3">
+            <div>
+                <p>Name: {tinyURL.name} </p>
+                <p>Short Link: {tinyURL.shortLink}</p>
+                <p>Original Link: {tinyURL.origLink}</p>
+            </div>
+        </Container>
+        </>
     );
 }

@@ -46,8 +46,12 @@ export const addNewURL = async (req, res) => {
     let newTinyURL = new tinyURL(req.body);
     let validTinyUrl;
 
+    if(tinyURL.findOne({name: newTinyURL.name})){
+        return res.status(404).json('Name already in use');
+    }
+
     //validate shortLink newTinyURL
-    if(validURL.shortLink && !validURL.isUri(newTinyURL.shortLink)){
+    if(newTinyURL.shortLink && !validURL.isUri(newTinyURL.shortLink)){
         return res.status(404).json('Invalid shortLink URL format');
     }
 
