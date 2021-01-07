@@ -22,9 +22,7 @@ export const Create = (props) => {
         console.log(tinyURL);
     
         axios.post("http://localhost:4000/api/newURL", tinyURL).then(result => {
-            const data = result.body;
-            setNewLink(data);
-            setTimeout(500);
+            setNewLink(result.data.shortLink);
         }).catch(err => console.log(err));
     }
     
@@ -74,7 +72,7 @@ export const Create = (props) => {
                 <Button variant="secondary" className="m-3" onClick={e => props.history.push("/tiny-url")}>Cancel</Button>
             </Form>
 
-            {newLink ? <Link to={newLink.shortLink}>newLink.shortLink</Link> : ""}
+            <div><span className="text-danger">New Link: </span><Link to={newLink}>{newLink}</Link></div>
             </Container>
         </div>
     )

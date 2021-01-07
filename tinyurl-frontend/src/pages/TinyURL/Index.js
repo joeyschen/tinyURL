@@ -34,16 +34,18 @@ export const Index = () => {
                         <th>Name</th>
                         <th>Short Link</th>
                         <th>Original Link</th>
+                        <th>Clicks</th>
                         <th>Date Created</th>
                     </tr>
                 </thead>
                 <tbody>
                     {tinyURL.map((tiny, idx) => (
                         <tr key={idx}>
-                            <td><Link to={`./details/${tiny.id}`}>{tiny.id}</Link></td>
+                            <td><Link to={`./tiny-url/details/${tiny.id}`}>{tiny.id}</Link></td>
                             <td>{tiny.name}</td>
                             <td>{tiny.shortLink}</td>
                             <td>{tiny.origLink}</td>
+                            <td>{tiny.clicks}</td>
                             <td>{tiny.createDate ? new Date(tiny.createDate).toISOString().slice(0,10) :  '-'}</td>
                         </tr>
                     ))}
