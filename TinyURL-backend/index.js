@@ -31,6 +31,12 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/build/index.html'));
 })
 
-app.listen(PORT, () => 
+const server = app.listen(PORT, () => 
     console.log(`Your server is running on ${PORT}`)
 );
+
+process.on('SIGTERM', () => {
+    server.close(() => {
+      console.log('Process terminated')
+    })
+  })

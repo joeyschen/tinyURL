@@ -72,7 +72,7 @@ export const Create = (props) => {
                 <Button variant="secondary" className="m-3" onClick={e => props.history.push("/tiny-url")}>Cancel</Button>
             </Form>
 
-            <div><span className="text-danger">New Link: </span><Link to={newLink}>{newLink}</Link></div>
+            <div><span className="text-danger">New Link: </span><Link href={newLink}>{newLink}</Link></div>
             </Container>
         </div>
     )
