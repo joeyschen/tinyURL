@@ -21,7 +21,7 @@ export const Create = (props) => {
 
         console.log(tinyURL);
     
-        axios.post("http://localhost:4000/api/newURL", tinyURL).then(result => {
+        axios.post("/api/newURL", tinyURL).then(result => {
             setNewLink(result.data.shortLink);
         }).catch(err => console.log(err));
     }

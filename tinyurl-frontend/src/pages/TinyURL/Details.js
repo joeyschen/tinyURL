@@ -13,7 +13,7 @@ export const Details = ({match}) => {
 
         // const {match: {params}} = this.props;
         
-        axios.get(`http://localhost:4000/api/newURL/${match.params.id}`).then(result => {
+        axios.get(`/api/newURL/${match.params.id}`).then(result => {
           const response = result.data;
           console.log(response);
           setTinyURL(response);

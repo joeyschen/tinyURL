@@ -6,7 +6,7 @@ import cors from 'cors';
 import path from 'path';
 
 const app = express();
-const PORT = 4000;
+const PORT = 8000;
 
 //mongo connection
 mongoose.Promise = global.Promise;

@@ -10,7 +10,7 @@ export const Index = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:4000/api/newURL`).then(result => {
+        axios.get(`/api/newURL`).then(result => {
           const response = result.data;
           console.log(response);
           setTinyURL(response);
