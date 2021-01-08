@@ -29,6 +29,7 @@ routes(app);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/build/index.html'));
+    console.log("You've hit the server!");
 })
 
 const server = app.listen(PORT, () => 
