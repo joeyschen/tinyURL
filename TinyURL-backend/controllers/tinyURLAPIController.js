@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { tinyURLSchema } from '../models/tinyURL';
 import validURL from 'valid-url';
-import cache, { clearKey } from '../services/cache';
+// import cache, { clearKey } from '../services/cache';
 import { createTinyURL, getTinyURL } from '../services/TinyURLService';
 
 
@@ -9,20 +9,20 @@ const tinyURL = mongoose.model('tinyURL', tinyURLSchema);
 
 export const getRedirectURL = async (req, res) => {
 
-    try{
-        //looks to see if key exists in cache
-        let cachedTinyURL = await cache.getFromCache('id', JSON.stringify(req.params.id));
-        if(cachedTinyURL){
-            console.log("item was cached!");
-            return res.redirect(cachedTinyURL.origLink);
-        } 
-        else{
-            console.log("not in cache");
-        }
-    }
-    catch(err){
-        console.error('Unable to get urlData from cache');
-    }
+    // try{
+    //     //looks to see if key exists in cache
+    //     let cachedTinyURL = await cache.getFromCache('id', JSON.stringify(req.params.id));
+    //     if(cachedTinyURL){
+    //         console.log("item was cached!");
+    //         return res.redirect(cachedTinyURL.origLink);
+    //     } 
+    //     else{
+    //         console.log("not in cache");
+    //     }
+    // }
+    // catch(err){
+    //     console.error('Unable to get urlData from cache');
+    // }
 
     //if not in cache, look in db
     await tinyURL.findOne({id: req.params.id}, (err, tinyURL) => {
@@ -38,22 +38,13 @@ export const getRedirectURL = async (req, res) => {
 
         return res.redirect(tinyURL.origLink);
     })
-    .cache()
+    // .cache()
     .catch(err => console.log(err));
 };
 
 export const addNewURL = async (req, res) => {
     let newTinyURL = new tinyURL(req.body);
     let validTinyUrl;
-
-    // if(tinyURL.findOne({name: newTinyURL.name})){
-    //     return res.status(404).json('Name already in use');
-    // }
-
-    // validate shortLink newTinyURL
-    // if(newTinyURL.shortLink && !validURL.isUri(newTinyURL.shortLink)){
-    //     return res.status(404).json('Invalid shortLink URL format');
-    // }
 
     //validate origLink newTinyURL
     if(validURL.isUri(newTinyURL.origLink)){

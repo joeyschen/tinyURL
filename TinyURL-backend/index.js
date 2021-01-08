@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyparser from 'body-parser';
 import routes from './routes/tinyURLRoutes';
-import cors from 'cors';
+// import cors from 'cors';
 import path from 'path';
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, "/build")));
 
 //CORS setup
-app.use(cors());
+// app.use(cors());
 
 routes(app);
 
