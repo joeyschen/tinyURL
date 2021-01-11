@@ -1,0 +1,26 @@
+{
+  "defaults": {
+    "store": {
+      "module": "greenlock-store-fs"
+    },
+    "challenges": {
+      "http-01": {
+        "module": "acme-http-01-standalone"
+      }
+    },
+    "renewOffset": "-45d",
+    "renewStagger": "3d",
+    "accountKeyType": "EC-P256",
+    "serverKeyType": "RSA-2048",
+    "subscriberEmail": "joeyshchen@gmail.com"
+  },
+  "sites": [
+    {
+      "subject": "ec2-3-135-231-41.us-east-2.compute.amazonaws.com",
+      "altnames": [
+        "ec2-3-135-231-41.us-east-2.compute.amazonaws.com"
+      ],
+      "renewAt": 1
+    }
+  ]
+}
