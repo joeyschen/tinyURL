@@ -1,6 +1,7 @@
 import shortid from 'shortid';
 import mongoose from 'mongoose';
 import { tinyURLSchema } from '../models/tinyURL';
+import os from 'os';
 // import cache, { clearKey } from './cache';
 
 const tinyURL = mongoose.model('tinyURL', tinyURLSchema);
@@ -36,7 +37,7 @@ export const createTinyURL = async (newTinyURL) =>{
     console.log(urlData);
     
     //if user didn't opt to create unique short link, create one for them
-    let shortL = `http://localhost:8000/tiny/`;
+    let shortL = `${os.hostname}/tiny/`;
     let genId = shortid.generate();
 
     if(newTinyURL.shortLink){
