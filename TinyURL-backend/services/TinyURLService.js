@@ -37,7 +37,7 @@ export const createTinyURL = async (newTinyURL) =>{
     console.log(urlData);
     
     //if user didn't opt to create unique short link, create one for them
-    let shortL = `${os.hostname}/tiny/`;
+    let shortL =  `http://${os.hostname}/tiny/`;
     let genId = shortid.generate();
 
     if(newTinyURL.shortLink){
